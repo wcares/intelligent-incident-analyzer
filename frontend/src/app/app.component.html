@@ -1,0 +1,50 @@
+<div class="container">
+  <header>
+    <h1>{{ title }}</h1>
+    <p class="subtitle">AI-Powered Incident Report Processing Platform</p>
+  </header>
+
+  <main>
+    <section class="status-card">
+      <h2>System Status</h2>
+      <div class="status-item">
+        <span class="label">Backend API:</span>
+        <span class="value">{{ backendStatus }}</span>
+      </div>
+      <div class="status-item">
+        <span class="label">API Response:</span>
+        <span class="value">{{ apiMessage }}</span>
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>Planned Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>NLP Processing</h3>
+          <p>Automatic text summarization and entity extraction from incident narratives</p>
+        </div>
+        <div class="feature-card">
+          <h3>Computer Vision</h3>
+          <p>Image analysis for evidence detection and scene context extraction</p>
+        </div>
+        <div class="feature-card">
+          <h3>ML Severity Prediction</h3>
+          <p>Automated severity classification: Low, Medium, High, Critical</p>
+        </div>
+        <div class="feature-card">
+          <h3>Admin Dashboard</h3>
+          <p>Real-time analytics, trend analysis, and workflow monitoring</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="team">
+      <h2>Team</h2>
+      <p>Nishal Sukumar &middot; Surya Yadav &middot; Lanchana Lokesh</p>
+      <p class="course">MSCS 3999 - Capstone Project | Spring 2026 | Clark University</p>
+    </section>
+  </main>
+
+  <router-outlet />
+</div>
