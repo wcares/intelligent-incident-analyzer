@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      const response = await fetch('http://localhost:8000/health');
+      const response = await fetch('/health');
       const data = await response.json();
       this.backendStatus = `Connected (v${data.version})`;
     } catch {
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/incidents');
+      const response = await fetch('/api/incidents');
       const data = await response.json();
       this.apiMessage = data.message;
     } catch {
