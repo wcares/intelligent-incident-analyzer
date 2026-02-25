@@ -42,52 +42,54 @@ A secure, web-based platform that leverages AI, NLP, Computer Vision, and Machin
 
 ### Prerequisites
 
-- Python 3.11+
-- Node.js 18+
-- Docker & Docker Compose
-- PostgreSQL 15+
+- Docker & Docker Compose (that's it - everything else runs in containers)
 
-### Local Development Setup
+### Quick Start
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/wcares/intelligent-incident-analyzer.git
-   cd intelligent-incident-analyzer
+```bash
+git clone https://github.com/wcares/intelligent-incident-analyzer.git
+cd intelligent-incident-analyzer
+docker compose -f docker/docker-compose.yml up --build
+```
+
+This starts **all 3 services** automatically:
+- **Frontend (Angular):** http://localhost:4200
+- **Backend API (FastAPI):** http://localhost:8000
+- **API Docs (Swagger):** http://localhost:8000/docs
+
+No Python, Node.js, or PostgreSQL installation needed - Docker handles everything.
+
+### Share with ngrok (optional)
+
+To share the running app via a public URL:
+
+1. Sign up at [ngrok.com](https://ngrok.com) (free) and copy your auth token
+2. Create `docker/.env`:
    ```
-
-2. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your local configuration
+   NGROK_AUTHTOKEN=your-token-here
    ```
+3. Restart: `docker compose -f docker/docker-compose.yml up --build`
+4. Get your public URL at http://localhost:4040
 
-3. **Start with Docker Compose**
-   ```bash
-   docker compose -f docker/docker-compose.yml up --build
-   ```
+### Run without Docker (alternative)
 
-4. **Or run services individually:**
+Backend:
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
 
-   Backend:
-   ```bash
-   cd backend
-   python -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   uvicorn app.main:app --reload --port 8000
-   ```
+Frontend:
+```bash
+cd frontend
+npm install
+npx ng serve --port 4200
+```
 
-   Frontend:
-   ```bash
-   cd frontend
-   npm install
-   ng serve --port 4200
-   ```
-
-5. **Access the application**
-   - Frontend: http://localhost:4200
-   - Backend API: http://localhost:8000
-   - API Docs (Swagger): http://localhost:8000/docs
+> Requires Python 3.11+, Node.js 18+, and PostgreSQL 15+ installed locally.
 
 ## Key Features (Planned)
 
