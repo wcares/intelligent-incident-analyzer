@@ -1,0 +1,140 @@
+$primary: #2563eb;
+$primary-dark: #1d4ed8;
+$dark: #0f172a;
+$gray: #64748b;
+$border: #e2e8f0;
+$bg: #f8fafc;
+$red: #ef4444;
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg;
+  padding: 1rem;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.auth-card {
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1.25rem 0 0.25rem;
+    color: $dark;
+  }
+
+  p {
+    color: $gray;
+    font-size: 0.9rem;
+  }
+}
+
+.back-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: $dark;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.logo {
+  background: $primary;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  input {
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid $border;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus { border-color: $primary; }
+    &::placeholder { color: #cbd5e1; }
+  }
+}
+
+.error {
+  color: $red;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.5rem;
+  background: #fef2f2;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  background: $primary;
+  color: #fff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover { background: $primary-dark; }
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: $gray;
+
+  a {
+    color: $primary;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card { padding: 1.5rem; }
+}

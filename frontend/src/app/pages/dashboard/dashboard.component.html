@@ -1,0 +1,110 @@
+<div class="dashboard-layout" [class.sidebar-collapsed]="!sidebarOpen">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">AI</div>
+      <span class="brand-text">Incident Manager</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active">
+        <span class="nav-icon">&#9632;</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a class="nav-item">
+        <span class="nav-icon">&#9776;</span>
+        <span class="nav-text">Incidents</span>
+      </a>
+      <a class="nav-item">
+        <span class="nav-icon">&#9650;</span>
+        <span class="nav-text">Analytics</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-area">
+    <!-- Top Navbar -->
+    <header class="topbar">
+      <button class="menu-toggle" (click)="toggleSidebar()">&#9776;</button>
+      <div class="topbar-right">
+        <button class="btn-new-incident">+ New Incident</button>
+        <div class="user-menu">
+          <span class="user-avatar">{{ userName.charAt(0) }}</span>
+          <span class="user-name">{{ userName }}</span>
+          <button class="btn-logout" (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+      <div class="page-header">
+        <h1>Dashboard Overview</h1>
+        <p>Monitor and manage incidents with AI-powered insights</p>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card" *ngFor="let stat of stats">
+          <div class="stat-info">
+            <span class="stat-label">{{ stat.label }}</span>
+            <span class="stat-value">{{ stat.value }}</span>
+          </div>
+          <div class="stat-icon" [style.background]="stat.color + '15'" [style.color]="stat.color">
+            <span *ngIf="stat.icon === 'doc'">&#128196;</span>
+            <span *ngIf="stat.icon === 'clock'">&#9200;</span>
+            <span *ngIf="stat.icon === 'alert'">&#9888;</span>
+            <span *ngIf="stat.icon === 'check'">&#10004;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Features -->
+      <div class="section-card">
+        <h2>AI-Powered Features</h2>
+        <p class="section-desc">Leverage advanced AI, NLP, CV, and ML capabilities</p>
+        <div class="features-grid">
+          <div class="feature-card" *ngFor="let f of features">
+            <div class="feature-icon" [style.background]="f.color + '15'" [style.color]="f.color">
+              {{ f.icon }}
+            </div>
+            <h3>{{ f.title }}</h3>
+            <p>{{ f.desc }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Incidents -->
+      <div class="section-card">
+        <div class="section-header">
+          <div>
+            <h2>Recent Incidents</h2>
+            <p class="section-desc">Latest incident reports with AI analysis</p>
+          </div>
+          <button class="btn-view-all">View All &rarr;</button>
+        </div>
+        <div class="incident-list">
+          <div class="incident-item" *ngFor="let inc of incidents">
+            <div class="incident-top">
+              <div class="incident-meta">
+                <span class="incident-id">{{ inc.id }}</span>
+                <span class="badge" [ngClass]="getSeverityClass(inc.severity)">{{ inc.severity }}</span>
+                <span class="badge" [ngClass]="getStatusClass(inc.status)">{{ inc.status }}</span>
+              </div>
+              <div class="incident-date">
+                <span>{{ inc.date }}</span>
+                <span class="reporter">{{ inc.reporter }}</span>
+              </div>
+            </div>
+            <h3 class="incident-title">{{ inc.title }}</h3>
+            <p class="incident-desc">{{ inc.desc }}</p>
+            <div class="ai-score">
+              <span class="score-icon">&#9679;</span>
+              AI Risk Score: {{ inc.aiScore }}/100
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

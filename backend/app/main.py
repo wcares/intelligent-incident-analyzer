@@ -1,19 +1,35 @@
-from fastapi import FastAPI
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI, Header, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
+
+from app.database import Base, engine, get_db
+from app.routes.auth import router as auth_router, get_current_user
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    Base.metadata.create_all(bind=engine)
+    yield
+
 
 app = FastAPI(
     title="Intelligent Incident Report Analyzer API",
     description="AI-powered platform for processing and analyzing multimodal incident reports",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(auth_router)
 
 
 @app.get("/health")
@@ -23,7 +39,6 @@ async def health_check():
 
 @app.get("/api/incidents")
 async def get_incidents():
-    """Placeholder endpoint for listing incident reports."""
     return {
         "incidents": [],
         "total": 0,
@@ -33,5 +48,4 @@ async def get_incidents():
 
 @app.post("/api/incidents")
 async def create_incident():
-    """Placeholder endpoint for creating a new incident report."""
     return {"message": "Incident creation endpoint - implementation coming soon"}
